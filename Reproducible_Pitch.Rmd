@@ -1,0 +1,46 @@
+---
+title: "Reproducible Pitch"
+author: "Haoyi He"
+date: "10/28/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,message = FALSE)
+```
+
+## mtcars App
+
+This app is using the R built-in data sets Motor Trend Car Road Tests, user is able to study the relationship between fuel consumption and weight of the vehicle by manually modifing variables 'Number of cylinders' and 'Gross horsepower'.
+
+Motor Trend Car Road Tests - The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+## Dataset
+
+```{r mtcars, echo = TRUE}
+data(mtcars)
+summary(mtcars)
+```
+
+## Usage of App
+
+- **Number of cylinders select box**
+
+Three choices are avalible: 4,6,8. Used to define how many cylinders exists in vehicle.
+
+- **Gross horsepower slider range**
+
+The horsepower ranger start from 50 hp and end with 350 hp
+
+
+## Example
+
+Vehicles with 6 cylinders and housepower are between 70 - 200
+
+```{r plot}
+library(ggplot2)
+newdata <- subset(mtcars, cyl == 6)
+newdata <- subset(newdata,hp >= 70 & hp <= 200)
+ggplot(newdata, aes(x=wt, y=mpg)) + geom_point() + ggtitle("Plot of Miles/ gallon by Weight") +xlab("Weight (1000 lbs)") + ylab("Miles/(US) gallon")
+```
+
